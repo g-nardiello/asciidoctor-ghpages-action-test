@@ -45,7 +45,7 @@ eval "$INPUT_PRE_BUILD"
 
 if [[ $INPUT_SLIDES_SKIP_ASCIIDOCTOR_BUILD == false ]]; then
     echo "Converting AsciiDoc files to HTML"
-    find . -depth 3 -name "*$INPUT_ADOC_FILE_EXT" -exec asciidoctor -b html $INPUT_ASCIIDOCTOR_PARAMS {} \;
+    find -depth 3 . -name "*$INPUT_ADOC_FILE_EXT" -exec asciidoctor -b html $INPUT_ASCIIDOCTOR_PARAMS {} \;
     find . -name "README.html" -execdir ln -s "README.html" "index.html" \;
     find . -name "*$INPUT_ADOC_FILE_EXT" -exec git rm -f --cached {} \;
 fi
